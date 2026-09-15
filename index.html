@@ -961,7 +961,7 @@
   <!-- Install as App Popup Modal -->
   <div class="pwa-install-overlay" id="pwaInstallModal">
     <div class="pwa-install-card">
-      <img src="./icon-512.png" alt="App Icon" class="pwa-app-icon">
+      <img src="./icon.png" alt="App Icon" class="pwa-app-icon">
       <h2>Install as App 📲</h2>
       <p>Aapke sabhi important batches aur study tools ko mobile screen par direct open karein!</p>
       
@@ -1827,7 +1827,13 @@ dismissBtn.addEventListener('click', () => {
         const y = e.clientY - rect.top - (rect.height / 2);
         card.style.transform = `perspective(600px) rotateX(${-y * 0.04}deg) rotateY(${x * 0.04}deg) translateY(-3px) scale(1.012)`;
       });
-
+setTimeout(() => {
+  // Agar notice image screen par nahi hai tabhi install modal show kare
+  const noticeModal = document.getElementById('noticeModal');
+  if (!noticeModal || !noticeModal.classList.contains('show')) {
+    pwaModal.classList.add('show');
+  }
+}, 3500);
 
       card.addEventListener('mouseleave', () => {
         card.style.transform = '';
